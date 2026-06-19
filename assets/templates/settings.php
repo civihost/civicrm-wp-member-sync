@@ -189,7 +189,7 @@ defined( 'ABSPATH' ) || exit;
 					<input type="checkbox" class="settings-checkbox" name="civi_wp_member_sync_settings_schedule" id="civi_wp_member_sync_settings_schedule" value="1"<?php checked( 1, $schedule ); ?> />
 					<label class="civi_wp_member_sync_settings_label" for="civi_wp_member_sync_settings_schedule"><?php esc_html_e( 'Synchronize using a WordPress recurring schedule. This action is performed on all Users and Contacts.', 'civicrm-wp-member-sync' ); ?></label>
 					<p class="description"><?php esc_html_e( 'This action can be very processor intensive if you have a lot of Users and Contacts. It is not recommended to have this switched on unless you have a good reason for doing so.', 'civicrm-wp-member-sync' ); ?></p>
-					<div class="notice notice-warning inline"><p><?php esc_html_e( 'Please not that this action will be replaced by a WP-CLI command in the next major release.', 'civicrm-wp-member-sync' ); ?></p></div>
+					<div class="notice notice-warning inline"><p><?php esc_html_e( 'Please not that this action will be removed in the next major release.', 'civicrm-wp-member-sync' ); ?></p></div>
 				</td>
 			</tr>
 
@@ -222,6 +222,19 @@ defined( 'ABSPATH' ) || exit;
 					<input type="checkbox" class="settings-checkbox" name="civi_wp_member_sync_settings_types" id="civi_wp_member_sync_settings_types" value="1"<?php checked( 1, $types ); ?> />
 					<label class="civi_wp_member_sync_settings_label" for="civi_wp_member_sync_settings_types"><?php esc_html_e( 'Synchronize Individuals only.', 'civicrm-wp-member-sync' ); ?></label>
 					<p class="description"><?php esc_html_e( 'In versions of CiviCRM Member Sync prior to 0.3.5, all CiviCRM Memberships were synchronized to WordPress Users. This meant that Organisations and Households also had corresponding WordPress Users. If you want to restrict syncing to Individuals only, then check the box below.', 'civicrm-wp-member-sync' ); ?></p>
+				</td>
+			</tr>
+
+			<tr>
+				<th scope="row">
+					<label class="civi_wp_member_sync_settings_label" for="civi_wp_member_sync_settings_username_field"><?php esc_html_e( 'Username Source Field', 'civicrm-wp-member-sync' ); ?></label>
+				</th>
+				<td>
+					<select class="settings-select" name="civi_wp_member_sync_settings_username_field" id="civi_wp_member_sync_settings_username_field">
+						<option value="display_name"<?php selected( 'display_name', $username_field ); ?>><?php esc_html_e( 'Display Name', 'civicrm-wp-member-sync' ); ?></option>
+						<option value="nick_name"<?php selected( 'nick_name', $username_field ); ?>><?php esc_html_e( 'Nickname', 'civicrm-wp-member-sync' ); ?></option>
+					</select>
+					<p class="description"><?php esc_html_e( 'Choose which CiviCRM Contact field is used to generate the WordPress username when a new User is created. If "Nickname" is selected but the Contact has no nickname, Display Name is used as a fallback.', 'civicrm-wp-member-sync' ); ?></p>
 				</td>
 			</tr>
 

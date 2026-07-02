@@ -734,6 +734,11 @@ class Civi_WP_Member_Sync_Users {
 			: $civi_contact['display_name'];
 		$user_name = sanitize_title( sanitize_user( $name_source ) );
 
+		// WordPress wp_users.user_login is VARCHAR(60); truncate to avoid insert failure.
+		if ( strlen( $user_name ) > 60 ) {
+			$user_name = rtrim( substr( $user_name, 0, 60 ), '-' );
+		}
+
 		// Ensure username is unique.
 		$user_name = $this->unique_username( $user_name, $civi_contact );
 
